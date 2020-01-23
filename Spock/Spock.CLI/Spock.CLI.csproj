@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <AssemblyName>Spock</AssemblyName>
+    <RootNamespace>ErraticMotion</RootNamespace>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>ErraticMotion.Spock</PackageId>
+    <Version>0.0.2</Version>
+    <Authors>Rob Ives</Authors>
+    <Company>Erratic Motion</Company>
+    <Product>ErraticMotion.Spock</Product>
+    <Copyright>Copyright Erratic Motion Ltd 2018</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/erraticmotion/spock</PackageProjectUrl>
+    <PackageTags>TDD BDD Gherkin</PackageTags>
+    <Description>CLI tool for Gherkin based Test Fixtures</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ErraticMotion.Core" Version="0.0.2" />
+    <PackageReference Include="ErraticMotion.Gherkin" Version="0.1.2" />
+    <PackageReference Include="ErraticMotion.Gherkin.Annotations" Version="0.1.1" />
+    <PackageReference Include="ErraticMotion.Spock.Net" Version="0.1.0" />
+  </ItemGroup>
+
+</Project>

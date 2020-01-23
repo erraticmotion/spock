@@ -1,79 +1,3 @@
-# Spock
-
-Spock.Net, originally based on the design thinking behind the Java/Groovy tool Spock but has now morphed into something a bit more.
-
-Basic guff is that it's a CLI tool for code generation of Test Fixtures. Very much in Alpha at the moment, so stuff will change.
-
-Will support the 3 main test runners (MSTest, NUNit, and xUnit, use the -t: switch to specify), but working on NUnit for this release, not tested with the other two frameworks, so might get weird results. Will fix any issues with later on.
-
-## Current supported command line options.
-
-```dos
-spock /?
-    
-SYNTAX
-    
-[-testrunner(t): <NUnit, MSTest, XUnit>]
-  The type of test runner used to run the generated test fixtures
-    
-[-feature(f): <string>]
-  The Gherkin .feature file to be processed
-    
-[-namespace(n): <string>]
-  The fully qualified .NET namespace. If not present will infer from the .feature # namespace: <value>
-    
-[-directory(d): <string>]
-  The fully qualified file system directory to search for Gherkin .feature files.
- 
-[-help(?): <boolean>]
-  displays the syntax usage
-    
-SAMPLE USAGE
-    
-  spock /? -or- spock -? -or- spock /
-    Display the Spock command line arguments and sample usage
-    
-  spock -t:MSTest -n:ErraticMotion.Test -f:"c:\projects\customer.feature"
-    Creates a MSTest based Test Fixture
-    
-  spock -testrunner:NUnit -namespace:ErraticMotion.Test -directory:c:\projects\customer\features\
-```
-
-## Usage
-
-Given a bit of Gherkin (WithdrawFixedAmounts.feature)
-
-```gherkin
-Feature: Withdraw Fixed Amounts
-
-Scenarios: Withdraw fixed amount
-  Given I have <Balance> in my account
-  When I choose to withdraw a fixed amount of <Withdrawal>
-  Then I should <Outcome>
-    And the balance of my account should be <Remaining>
-
-  Where: Successful withdrawal
-    Can add an optional description in addition to the name for an Examples, Where keyword.
-    | Balance | Withdrawal | Outcome           | Remaining |
-    | 500D    | 50D        | receive $50 cash  | 450D      |
-    | 500     | 100        | receive $100 cash | 400       |
-
-  Where: Attempt to withdraw too much
-    | Balance | Withdrawal | Outcome       | Remaining |
-    | 100D    | 200D       | see an error  | 100D      |
-    | 0       |  50        | see an error  | 0         |
-```
-Quick and dirty batch file to set the Path to Spock
-```dos
-set path=".\bin\Debug\
-
-cls
-
-spock -t:NUnit -n:ErraticMotion -g:false -c:Customer -f:WithdrawFixedAmounts.feature
-```
-Executing the batch file gives me the C# class (WithdrawFixedAmounts.generated.cs)
-
-```c#
 // <copyright file="WithdrawFixedAmounts.cs" company="Erratic Motion Ltd">
 // Copyright (c) Erratic Motion Ltd. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
@@ -94,7 +18,7 @@ namespace ErraticMotion {
 using global::ErraticMotion.Test.Tools.Gherkin.Annotations;
 using global::NUnit.Framework;
 /// <summary>
-/// <para>Feature Id: 6c9238f2-2055-4500-88a4-b38ac842beb4</para>
+/// <para>Feature Id: d2f12c96-a9e4-4fc6-8b6a-e94b025466e3</para>
 /// <para>Withdraw Fixed Amounts</para>
 /// <para></para>
 /// </summary>
@@ -102,7 +26,7 @@ using global::NUnit.Framework;
 /// <example>
 /// <code language="none" title="Gherkin">
 /// #language: en
-/// #source: C:\Source\spock\Spock\Spock.Test\WithdrawFixedAmounts.feature
+/// #source: C:\source\spock\spock\spock.cli.test\WithdrawFixedAmounts.feature
 /// [Feature]: Withdraw Fixed Amounts
 /// 
 /// 
@@ -125,7 +49,7 @@ using global::NUnit.Framework;
 /// </code>
 /// </example>
 /// </remarks>
-[FeatureId("6c9238f2-2055-4500-88a4-b38ac842beb4")]
+[FeatureId("d2f12c96-a9e4-4fc6-8b6a-e94b025466e3")]
 [Feature("")]
 [GeneratedFromFeature]
 [TestFixture]
@@ -148,7 +72,7 @@ private void OnWithdrawFixedAmount(double Balance, double Withdrawal, string Out
 }
 
 /// <summary>
-/// <para>Scenario Id: fe58a24e-4918-421c-ad82-499e8812d794</para>
+/// <para>Scenario Id: a19a3728-4e5e-4362-8e23-b344d9ae6efe</para>
 /// <para>Withdraw fixed amount</para>
 /// <para></para>
 /// </summary>
@@ -172,7 +96,7 @@ private void OnWithdrawFixedAmount(double Balance, double Withdrawal, string Out
 /// </code>
 /// </example>
 /// </remarks>
-[ScenarioId("fe58a24e-4918-421c-ad82-499e8812d794")]
+[ScenarioId("a19a3728-4e5e-4362-8e23-b344d9ae6efe")]
 [System.CLSCompliant(false)]
 [TestCase(500, 50, "receive $50 cash", 450)]
 [TestCase(500, 100, "receive $100 cash", 400)]
@@ -184,4 +108,3 @@ public void WithdrawFixedAmount(double Balance, double Withdrawal, string Outcom
 }
 }
 }
-```
